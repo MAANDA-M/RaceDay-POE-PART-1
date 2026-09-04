@@ -406,6 +406,23 @@ The complete script should execute without errors.
 
 ---
 
+## Database Verification
+
+After executing the SQL script in SQL Server Management Studio, the database should contain the following tables:
+
+- Role
+- User
+- Event
+- Category
+- Enrolment
+- Result
+
+The verification queries at the end of the SQL script are used to confirm that the tables were created successfully and that the sample data was inserted correctly.
+
+A successful database setup should show the required Organisers, Participants, Events, Categories, Enrolments and Results without SQL execution errors.
+
+---
+
 # Technologies and Tools Used
 
 The following technologies and tools were used during Part 1:
