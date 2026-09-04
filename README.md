@@ -1,5 +1,5 @@
 # RaceDay POE - Part 1
-
+[![RaceDay Part 1 Validation](https://github.com/MAANDA-M/RaceDay-POE-PART-1/actions/workflows/validation.yml/badge.svg)](https://github.com/MAANDA-M/RaceDay-POE-PART-1/actions/workflows/validation.yml)
 ## System Planning and Database
 
 ### GitHub Repository
