@@ -1,0 +1,64 @@
+name: RaceDay Part 1 Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-part1:
+    name: Validate Part 1 Repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check docs folder
+        run: |
+          if [ ! -d "docs" ]; then
+            echo "ERROR: docs folder is missing."
+            exit 1
+          fi
+          echo "docs folder found."
+
+      - name: Check ERD
+        run: |
+          if find docs -maxdepth 1 -type f \( -iname "*ERD*.png" -o -iname "*ERD*.pdf" \) | grep -q .; then
+            echo "RaceDay ERD found."
+          else
+            echo "ERROR: RaceDay ERD PNG or PDF is missing."
+            exit 1
+          fi
+
+      - name: Check API Endpoint Plan
+        run: |
+          if find docs -maxdepth 1 -type f \( -iname "*Endpoint*Plan*.pdf" -o -iname "*Endpoint*Plan*.md" \) | grep -q .; then
+            echo "API Endpoint Plan found."
+          else
+            echo "ERROR: API Endpoint Plan PDF or Markdown file is missing."
+            exit 1
+          fi
+
+      - name: Check SQL database script
+        run: |
+          if find docs -maxdepth 1 -type f -iname "*.sql" | grep -q .; then
+            echo "SQL database script found."
+          else
+            echo "ERROR: SQL database script is missing."
+            exit 1
+          fi
+
+      - name: Check README
+        run: |
+          if [ ! -f "README.md" ]; then
+            echo "ERROR: README.md is missing."
+            exit 1
+          fi
+          echo "README.md found."
+
+      - name: Part 1 validation successful
+        run: echo "All required RaceDay Part 1 files are present."
