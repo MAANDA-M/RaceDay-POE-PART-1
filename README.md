@@ -10,29 +10,29 @@ https://github.com/MAANDA-M/RaceDay-POE-PART-1
 
 ## Project Overview
 
-RaceDay is a race event management system designed to allow organisers to create and manage race events while participants can register, manage their profiles, view available events, enrol in event categories and view their race results.
+RaceDay is a race event management system designed to allow organisers to create and manage race events, while participants can register, manage their profiles, view available events, enrol in event categories and view their race results.
 
 This repository contains the planning and database components developed for Part 1 of the RaceDay Portfolio of Evidence (POE).
 
-Part 1 focuses on planning the system before implementation by developing an Entity Relationship Diagram (ERD), an API Endpoint Plan and a SQL Server database script.
+Part 1 focuses on planning the RaceDay system before application implementation by producing an Entity Relationship Diagram (ERD), a RESTful API Endpoint Plan and a SQL Server database script.
 
 ---
 
-## Part 1 Deliverables
+# Part 1 Deliverables
 
 The following deliverables are included in Part 1:
 
 - Entity Relationship Diagram (ERD)
 - RESTful API Endpoint Plan
 - SQL Server Database Script
-- Realistic Sample Data
+- Realistic Sample Database Data
 - GitHub Repository
 - Minimum of 20 Meaningful GitHub Commits
 - GitHub Actions CI/CD Validation
 - Successful CI/CD Build Screenshot
 - Unlisted YouTube Walkthrough Video
 
-The planning documents and SQL database script are stored inside the `/docs` folder of this repository.
+The ERD, API Endpoint Plan and SQL database script are stored inside the `/docs` folder of this repository.
 
 ---
 
@@ -56,9 +56,9 @@ An Organiser can:
 - Create categories for their events
 - Update event categories
 - Delete event categories
-- View participants enrolled in events
+- View participants enrolled in their events
 - Manage event enrolments
-- Record race results
+- Record participant race results
 - View race results
 
 ---
@@ -85,11 +85,11 @@ A Participant can:
 
 # Section A - Entity Relationship Diagram
 
-The RaceDay database was designed as a relational database.
+The RaceDay database was designed as a relational database using Microsoft SQL Server.
 
-The Entity Relationship Diagram contains the entities, attributes, primary keys, foreign keys and relationships required by the RaceDay system.
+The Entity Relationship Diagram represents the entities, attributes, primary keys, foreign keys and relationships required by the RaceDay system.
 
-The database contains the following six entities:
+The RaceDay database contains the following six main entities:
 
 1. Role
 2. User
@@ -102,32 +102,32 @@ The database contains the following six entities:
 
 ## Role Entity
 
-The `Role` entity stores the roles available in the system.
+The `Role` entity stores the roles available in the RaceDay system.
 
 The two main roles are:
 
 - Organiser
 - Participant
 
-Each user is assigned a role.
+Each registered user is assigned a role.
 
 ---
 
 ## User Entity
 
-The `User` entity stores registered RaceDay users.
+The `User` entity stores information about registered RaceDay users.
 
-The entity stores information such as:
+User information includes:
 
 - User ID
 - Full Name
-- Email
+- Email Address
 - Password Hash
 - Password Salt
 - Role ID
 - Created Date
 
-The Role ID is used as a foreign key to connect a user to a role.
+The Role ID is used as a foreign key to associate each user with a role.
 
 ---
 
@@ -169,7 +169,7 @@ Each category belongs to a specific event.
 
 ## Enrolment Entity
 
-The `Enrolment` entity records participants who enrol in race events.
+The `Enrolment` entity records Participants who enrol in race events.
 
 Enrolment information includes:
 
@@ -179,13 +179,13 @@ Enrolment information includes:
 - Category ID
 - Enrolment Date
 
-The entity links a participant to an event and a selected category.
+The Enrolment entity links a Participant to an Event and a selected Category.
 
 ---
 
 ## Result Entity
 
-The `Result` entity stores a participant's race result.
+The `Result` entity stores a Participant's race result.
 
 Result information includes:
 
@@ -195,7 +195,7 @@ Result information includes:
 - Finish Position
 - Recorded Date
 
-Each result is associated with an enrolment.
+Each Result is associated with an Enrolment.
 
 ---
 
@@ -209,19 +209,19 @@ The RaceDay database contains the following main relationships:
 - One Participant can have many Enrolments.
 - One Event can have many Enrolments.
 - One Category can be associated with many Enrolments.
-- An Enrolment may have a Result once the participant has completed the event.
+- An Enrolment may have a Result once the Participant has completed the event.
 
-Primary keys and foreign keys are used to maintain referential integrity between the database tables.
+Primary keys and foreign keys are used to maintain referential integrity between the RaceDay database tables.
 
 ---
 
 # Section B - RESTful API Endpoint Plan
 
-The RaceDay API Endpoint Plan documents the endpoints that the RaceDay system will expose.
+The RaceDay API Endpoint Plan documents the RESTful API endpoints that the RaceDay system will expose.
 
-Each endpoint is planned before implementation.
+Each endpoint is planned before application code is implemented.
 
-The endpoint plan contains the following information for each endpoint:
+Every endpoint in the API Endpoint Plan contains the following information:
 
 - HTTP Method
 - Route
@@ -247,31 +247,31 @@ Authentication endpoints are used to register and authenticate RaceDay users.
 
 The planned authentication functionality includes:
 
-- User registration
-- User login
-- JWT authentication
-- Role-based authorisation
+- User Registration
+- User Login
+- JWT Authentication
+- Role-Based Authorisation
 
 Registration and login are public endpoints.
 
-Other protected endpoints require the user to be authenticated.
+Protected endpoints require the user to be authenticated.
 
 ---
 
 ## User Profile Endpoints
 
-User profile endpoints allow logged-in users to:
+User Profile endpoints allow authenticated users to:
 
 - View their profile
 - Update their profile information
 
-Authentication is required to access profile information.
+Authentication is required to access and modify user profile information.
 
 ---
 
 ## Event Endpoints
 
-Event endpoints allow the RaceDay system to manage race events.
+Event endpoints are used to manage RaceDay events.
 
 The planned functionality includes:
 
@@ -281,17 +281,21 @@ The planned functionality includes:
 - Update an event
 - Delete an event
 
+Participants can view available events.
+
 Only Organisers are allowed to create, update or delete events.
+
+An Organiser may only modify events that they own.
 
 ---
 
 ## Category Endpoints
 
-Category endpoints allow categories to be managed for race events.
+Category endpoints are used to manage the categories available for race events.
 
 The planned functionality includes:
 
-- View event categories
+- View categories belonging to an event
 - View a specific category
 - Create a category
 - Update a category
@@ -299,32 +303,32 @@ The planned functionality includes:
 
 Participants can view categories.
 
-Organisers can manage categories belonging to their events.
+Organisers can create and manage categories belonging to their own events.
 
 ---
 
 ## Event Enrolment Endpoints
 
-Event enrolment endpoints allow Participants to enter race events.
+Event Enrolment endpoints allow Participants to enter RaceDay events.
 
 The planned functionality includes:
 
 - Enrol in an event category
 - View enrolments
 - Withdraw from an enrolment
-- Allow Organisers to view participants enrolled in their events
+- Allow Organisers to view Participants enrolled in their events
 
 ---
 
 ## Result Endpoints
 
-Result endpoints are used to manage race results.
+Result endpoints are used to record and retrieve race results.
 
 The planned functionality includes:
 
-- Record a participant's result
-- View event results
-- View the result of a specific enrolment
+- Record a Participant's result
+- View race results
+- View the result of a specific Enrolment
 
 Results include information such as finish time and finish position.
 
@@ -334,7 +338,7 @@ Results include information such as finish time and finish position.
 
 The RaceDay database is implemented using Microsoft SQL Server.
 
-The SQL database script creates the complete RaceDay database schema.
+The SQL Server database script creates the complete RaceDay database schema.
 
 The database contains the following tables:
 
@@ -349,7 +353,7 @@ The SQL database structure is designed to match the RaceDay Entity Relationship 
 
 ---
 
-## Database Constraints
+# Database Constraints
 
 The RaceDay SQL script uses database constraints to maintain data integrity.
 
@@ -362,11 +366,11 @@ The script includes:
 - CHECK constraints
 - DEFAULT values where required
 
-These constraints help prevent invalid or inconsistent data from being stored in the database.
+These constraints help prevent invalid or inconsistent information from being stored in the database.
 
 ---
 
-## Sample Data
+# Sample Data
 
 The SQL script includes realistic sample data that can be used to test the RaceDay database.
 
@@ -377,9 +381,9 @@ The sample data includes at minimum:
 - 3 Events
 - Categories for the events
 - Sample Enrolments
-- Sample Results
+- Sample Race Results
 
-The sample data demonstrates that the database relationships work correctly.
+The sample data demonstrates that the RaceDay database and its relationships operate correctly.
 
 ---
 
@@ -387,18 +391,18 @@ The sample data demonstrates that the database relationships work correctly.
 
 The RaceDay SQL database script can be executed using Microsoft SQL Server Management Studio (SSMS).
 
-To run the database:
+To run the database script:
 
 1. Open Microsoft SQL Server Management Studio.
 2. Connect to a SQL Server instance.
 3. Open the `RaceDay_Database_Script.sql` file.
 4. Execute the entire SQL script.
-5. Confirm that the RaceDay database is created.
+5. Confirm that the RaceDay database is created successfully.
 6. Confirm that all required tables are created.
 7. Confirm that the sample data is inserted successfully.
-8. Run the verification queries at the bottom of the script.
+8. Run the verification queries at the bottom of the SQL script.
 
-The script should execute successfully without errors.
+The complete script should execute without errors.
 
 ---
 
@@ -422,8 +426,9 @@ The following technologies and tools were used during Part 1:
 RaceDay-POE-PART-1/
 │
 ├── docs/
+│   ├── RaceDay_ERD.drawio
 │   ├── RaceDay_ERD.png
-│   ├── RaceDay_API_Endpoint_Plan.pdf
+│   ├── API_Endpoint_Plan.pdf
 │   └── RaceDay_Database_Script.sql
 │
 ├── .github/
@@ -435,18 +440,28 @@ RaceDay-POE-PART-1/
 
 ---
 
-## RaceDay ERD
+# Part 1 Documentation
 
-The ERD shows:
+All required planning documents for Part 1 are stored inside the `/docs` folder.
 
-- All database entities
+---
+
+## RaceDay Entity Relationship Diagram
+
+The RaceDay ERD shows:
+
+- Database entities
 - Entity attributes
 - Primary keys
 - Foreign keys
 - Relationships
 - Relationship cardinality
 
-File:
+The editable Draw.io version is stored as:
+
+`/docs/RaceDay_ERD.drawio`
+
+The required PNG submission version is stored as:
 
 `/docs/RaceDay_ERD.png`
 
@@ -454,7 +469,7 @@ File:
 
 ## RaceDay API Endpoint Plan
 
-The API Endpoint Plan contains all planned RaceDay API endpoints.
+The API Endpoint Plan contains the planned RaceDay RESTful API endpoints.
 
 Every endpoint includes:
 
@@ -467,13 +482,13 @@ Every endpoint includes:
 
 File:
 
-`/docs/RaceDay_API_Endpoint_Plan.pdf`
+`/docs/API_Endpoint_Plan.pdf`
 
 ---
 
 ## RaceDay Database Script
 
-The SQL Server script contains:
+The SQL Server database script contains:
 
 - Database creation
 - Table creation
@@ -493,7 +508,7 @@ File:
 
 GitHub is used to manage the RaceDay Part 1 project and maintain a record of project development.
 
-The repository uses meaningful commits to document changes made throughout the development process.
+The repository uses meaningful commits to document the changes made during the development of Part 1.
 
 A minimum of 20 meaningful commits will be completed using the student's own GitHub account.
 
@@ -501,17 +516,31 @@ A minimum of 20 meaningful commits will be completed using the student's own Git
 
 # GitHub Actions CI/CD
 
-GitHub Actions is used to validate the structure of the RaceDay repository.
+GitHub Actions is used to validate the structure of the RaceDay Part 1 repository.
 
-The CI/CD workflow will check that the required Part 1 files and folders are available in the repository.
+The CI/CD workflow checks that the required Part 1 files and folders are available in the repository.
 
-The workflow will verify the presence of important files such as:
+The workflow validates the presence of:
 
-- `/docs`
-- RaceDay ERD
-- API Endpoint Plan
-- SQL Database Script
-- README
+- `/docs` folder
+- RaceDay ERD PNG or PDF
+- RaceDay API Endpoint Plan
+- RaceDay SQL Database Script
+- README file
+
+---
+
+## Successful CI/CD Build
+
+The GitHub Actions workflow was executed successfully and validated that the required RaceDay Part 1 files are present in the repository.
+
+The successful workflow confirms that the repository contains the required documentation, including the ERD, API Endpoint Plan, SQL Database Script and README file.
+
+![Successful GitHub Actions CI/CD Build](docs/CI_CD_Success.png.png)
+
+### CI/CD Screenshot
+
+_To be added after the GitHub Actions workflow runs successfully._
 
 ---
 
@@ -521,16 +550,16 @@ An unlisted YouTube video will be created to demonstrate and explain the RaceDay
 
 The video will include:
 
-- Introduction to RaceDay
-- Explanation of the two user roles
-- Explanation of the ERD
-- Explanation of database entities
+- Introduction to the RaceDay system
+- Explanation of the Organiser and Participant roles
+- Explanation of the Entity Relationship Diagram
+- Explanation of the database entities
 - Explanation of relationships and cardinality
 - Explanation of the API Endpoint Plan
 - Explanation of the SQL Server database script
 - Running the SQL database script in SSMS
 - Demonstrating successful database creation
-- Showing the GitHub repository
+- Showing the GitHub repository structure
 - Showing the successful GitHub Actions workflow
 
 ---
@@ -544,3 +573,6 @@ RaceDay Portfolio of Evidence - Part 1
 
 ---
 
+# Repository Link
+
+https://github.com/MAANDA-M/RaceDay-POE-PART-1
