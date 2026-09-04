@@ -477,13 +477,11 @@ The RaceDay ERD shows:
 - Relationships
 - Relationship cardinality
 
-The editable Draw.io version is stored as:
+### ERD Preview
 
-`/docs/RaceDay_ERD.drawio`
+The following diagram represents the RaceDay database structure, including the six main entities, primary keys, foreign keys and relationships.
 
-The required PNG submission version is stored as:
-
-`/docs/RaceDay_ERD.png`
+![RaceDay Entity Relationship Diagram](docs/RaceDay_ERD.png)
 
 ---
 
