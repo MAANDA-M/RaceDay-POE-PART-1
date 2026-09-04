@@ -556,15 +556,11 @@ The successful workflow confirms that the repository contains the required docum
 
 ![Successful GitHub Actions CI/CD Build](docs/CI_CD_Success.png.png)
 
-### CI/CD Screenshot
-
-_To be added after the GitHub Actions workflow runs successfully._
-
 ---
 
 # Video Demonstration
 
-An unlisted YouTube video will be created to demonstrate and explain the RaceDay Part 1 work.
+https://youtu.be/nPrBLKKw6w0
 
 The video will include:
 
