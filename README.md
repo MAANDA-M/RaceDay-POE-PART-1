@@ -560,7 +560,7 @@ The successful workflow confirms that the repository contains the required docum
 
 # Video Demonstration
 
-https://youtu.be/nPrBLKKw6w0
+https://www.youtube.com/watch?v=nPrBLKkw6w0
 
 The video will include:
 
