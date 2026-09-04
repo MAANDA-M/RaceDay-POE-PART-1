@@ -440,9 +440,12 @@ RaceDay-POE-PART-1/
 
 ---
 
-# Part 1 Documentation
+## Quick Access to Part 1 Files
 
-All required planning documents for Part 1 are stored inside the `/docs` folder.
+- [RaceDay ERD - PNG](docs/RaceDay_ERD.png)
+- [RaceDay ERD - Editable Draw.io File](docs/RaceDay_ERD.drawio)
+- [API Endpoint Plan](docs/API_Endpoint_Plan.pdf)
+- [SQL Database Script](docs/RaceDay_Database_Script.sql)
 
 ---
 
