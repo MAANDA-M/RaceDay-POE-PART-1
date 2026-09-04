@@ -544,6 +544,3 @@ RaceDay Portfolio of Evidence - Part 1
 
 ---
 
-# Repository Link
-
-https://github.com/MAANDA-M/RaceDay-POE-PART-1
